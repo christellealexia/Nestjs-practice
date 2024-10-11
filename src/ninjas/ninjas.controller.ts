@@ -29,22 +29,15 @@ export class NinjasController {
 
   @Put(':id')
   updateNinja(@Param('id') id: string, @Body() updatedNinja: UpdateNinjaDto) {
-    return {
-      id,
-      name: updatedNinja.name,
-      age: updatedNinja.age,
-    };
+    return this.ninjasservice.updateNinja(+id, updatedNinja);
   }
 
   @Delete(':id')
-  deleteNinja(@Param('id') id: string) {
-    return id;
+  removeNinja(@Param('id') id: string) {
+    return this.ninjasservice.removeNinja(+id);
   }
   @Post()
   createNinja(@Body() NinjaDto: CreateNinjaDto) {
-    return {
-      name: NinjaDto.name,
-      age: NinjaDto.age,
-    };
+    return this.ninjasservice.createNinja(NinjaDto);
   }
 }
